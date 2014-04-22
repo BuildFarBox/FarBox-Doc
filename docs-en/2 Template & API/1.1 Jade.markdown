@@ -1,0 +1,225 @@
+url: jade
+Title: Jade Syntax
+toc: yes
+
+## Forewords
+
+FarBox turns file-folder base on OS file system into a query-able database, then the FarBox API queries the database to get data to render the pages(HTML).
+
+In a traditional point of view， database means `backend`, and the pages mean `frontend`. And we found the Jade syntax which can help us to mix backend and frontend together, coding less but more beautiful. We customed Jade syntax for FarBox, it works well and becomes more human!
+
+[Jade](http://jade-lang.com/) is a pythonic template frame from the world of Node.js. In fact, FarBox will compile a `.jade` file into a file follows `Jinja2` syntax on server side.
+
+## Basic Syntax
+
+### HTML tags、id、class
+
+```jade
+.class_name this is content
+// last result:<div class="class_name">this is content</div>
+
+tag_name.class_name
+// last result:<tag_name class="class_name"></tag_name>
+
+span#dom_id.class_name_1.class_name_2 this is content
+//last result: <span id="dom_id", class="class_name_1 class_name_2">this is content</span>
+
+.class_name this is line 1
+| this is line 2
+//
+	 | is used in multi-lines, the last result: 
+ <div class="class_name">
+		this is line 1
+		this is line 2
+	</div>
+```
+
+### Variables and HTML Tags
+
+If you want to relate a variable to a HTML tag:
+
+```jade
+node post.content  
+//it's equal to <node>post.content</node>
+
+var = post.content
+// equal to {%set var = post.content %}, set a value to a parameter
+
+node= post.content 
+// before `=` there is no blank space, equal to <node>{{ post.content }}</node>
+
+node= 'post.content'
+// euqal to <node>post.content</node>
+
+```
+
+
+If there are extral properties forthe HTML tag:
+```jade
+a(href=post.url)= post.title
+// euqal to <a href={{post.url}}>{{post.title}}</a>
+
+a(href='/post/{{post.url_path}}')= post.title
+// this syntax mixed Jinja2 and Jade, equal to <a href='/post/{{post.url_path}}'>{{post.title}}</a>
+```
+
+### for/if
+
+```jade
+head
+	if site.title == 'test'
+		title= site.title
+	elif site.title == 'a test too'
+		title= site.title + '!!!'
+	else
+		title= 'blank'
+	
+body
+	for post in posts
+		h1= post.title
+```
+
+equal to
+```html
+<head>
+	{% if site.title=='test' %}
+	    	<title>{{ site.title }}</title>
+	{% elif site.title =='a test too' %}
+		<title>{{ site.title + '!!!' }}</title>
+	{% else %}
+		<title>blank</title>
+	{% endif %}
+</head>
+<body>
+	{% for post in posts %}
+		<h1>{{ post.title }}</h1>
+	{% endfor %}
+</body>
+```
+
+#### Notice！！
+Do no mix `if/else/for` into other logics, the syntax below is error.
+```jade
+if post
+    post.content
+else no content 
+// the else is not valid, it's not a HTML tag, neither a logical judgement. `else` should in a seperated line.
+```
+
+### Run Functions
+
+```jade
++raise_404()
+// add `+` before the function name, equal to: {{ raise_404() }}
+// This is just an example，in fact raise_404 is a speical function, event has no `+`, it works well.
+// But other common functions, must need a `+` to declare.
+```
+
+## Inheritance and include
+
+### extends & include
+
+Equal to `extends` and `include` in Jinja2, but do not add quotation mark for a template file path.
+
+```jade
+extends base
+extends base.jade
+// equal to {% extends 'base.jade' %}
+
+include include/comments
+include include/comments.jade
+include include.comments.jade
+//
+  equal to {% include 'include/comments.jade' %}
+```
+
+### macro/mixin
+
+`macro` is a concept in Jinja2, `mixin` is a concept in Jade,  and in FarBox API they are equal.
+
+`macro` means to define a cuntion, then it can be called in your template. If you need to cache the reuslt computed by the function, the name of function should start with `cache_`.
+
+Jinja2 is a template frame wrote in Python, so the definition of `macro` is close to the way in Python.
+
+```jade
+mixin sidebar(name)
+	h1= name
+	p this is sidebar
+
+// equal to
+{% macro sidebar(name) %}
+	<h1>{{ name }}</h1>
+	<p> this is sidebar </p>
+{% endmacro %}
+```
+
+If a macro definition and usages are in the same template file, just call it directly.
+But if between different template files, you need to import it first. This is a concept from Jinja, so we need to use Jinja2 syntax now.
+
+For example:
+```jinjia2
+{% from "mixins.jade" import get_url %}
+
+{# Notice! `mixins.jade` needs quotation mark #}
+```
+
+**`macro` has a better performance to `include`， `include` brings a namespace definitionally, some unexpected errors may come with it. But `macro` is just a function, its namespace is private, and much more controllable.**
+
+
+
+## Mix Jade and Jinja2
+
+### Some Examples
+
+In the `.jade` template file, we can use Jinja2 syntax in a separated line too.
+
+```jade
+extends base
+{% from "mixins" import make_posts_list %}
+{{ site.title }}
+
+.entry
+	| {{ post.title }} -
+	| {{ post.date }}
+
+```
+
+
+### Keywords of Variables
+
+'post', 'posts', 'site', 'sites', 'files', 'tags', 'tag', 'folder', 'folders','category', 'images', 'albums', 'album', 'next_one', 'pre_one', 'paginator', 'pager', thy are the keywords of variables, will not be treated as a HTML tag.
+
+For example:
+
+```jade
+/*valid, the last result: <div>{{post.content}}</div>*/
+div
+	post.content
+
+
+/*doc is not a keyword, the last result: <div><doc class="content"></doc></div>*/
+div
+	doc.content
+
+/*if you need `doc` work well like `post`, the syntax below:*/
+div= doc.content
+/*or*/
+div
+	| {{ doc.content}}
+
+```
+
+### Keywords of Functions
+
+'load', 'set_content_type', 'redirect', 'a_with_selected', 'set_per_page', 'add_doc_actions', these functions are core functions of FarBox, you can use them directly.
+
+'need_login', 'need_admin', 'raise_404' are speical functions, for example, `need_login()` and `need_login`, euqal to `{{ need_login() }}`.
+
+
+
+## Auto-Complete in FarBox
+
+- If doctype is not declared, it would be `doctype html` by default.
+- If the doctype is `html`, and no feed address declared, it will be auto-added.
+- If the doctype is `html`, and no charset declared, it will be `utf8` by default.
+

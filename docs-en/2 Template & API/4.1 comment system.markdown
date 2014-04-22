@@ -1,0 +1,101 @@
+Title: Comment System
+url: comment-system
+toc: yes
+
+## Basic Mechanism
+
+You can commit a comment to a post, an image, event a file. All the comments of a document will be put together and synced to your Dropbox and your computer.
+
+
+### Comments File
+
+The comments file is related to a normal document (like a post), for example:
+
+Assume the path of a post is `mysite.com/category/today.md`, then its comments file will be located at `mysite.com/category/today.comments.md`.
+
+If the document is not a post, the system will add `.txt` as the extension of the comments file. Assume there is an image, its path is `mysite.com/_image/photo.jpg`; then its comments file's path is `mysite.com/_image/photo.comments.jpg.txt`.
+
+If you changed a file's  name or path, you should also change the name or path of the related comments file.
+
+
+### Format of Comments File
+
+In the comments file, each comment is splited by `- - - - - - - - - - - - - - - -  `.
+
+```
+date: 2013-04-19 07:57:58
+author: Joshua7v
+email: joshua7v@***.com
+site: http://www.ifanother.com
+ip: 127.0.0.1
+
+This is comment content.
+
+- - - - - - - - - - - - - - - -
+
+date: 2013-04-19 07:57:58
+author: Joshua7v
+email: joshua7v@***.com
+site: http://www.ifanother.com
+ip: 127.0.0.1
+
+This is comment content 2.
+
+```
+
+
+###  Typically  Used
+
+FarBox try to let a human being understand a database which one is designed for human. The comments system is base on this principle too.
+
+Of couse, there are limits because of this principle. By plaintext, we can't handle the nested structure; and if too many comments in one document, every new comment will bring slowdowns in performance.
+
+Scenarios that typically used:
+
+- You want to keep simple, this comments system is a out-of-the-box feature.
+- Personal communication
+- Less than hundreds comments per post
+- Keep the data of comments in your hand (Dropbox)
+
+
+## Commit a Comment
+
+### The URL for Committing
+
+When visiting a URL like `/post/<post_url>`, and it's a detail page for a post. Then you can commit a new comment to this URL in method `POST`.
+
+If you customed your own URL rules, you should run `{{ add_doc_actions(doc) }}` to make a page can accept the new comment.
+
+
+### Fields in POST
+
+
+| Field | Required | Description | 
+| ---- | ---- | ---- |
+| email | yes| -- | 
+| author |  no | if a blank value, the forepart of email will be the name | 
+| site | no | website url|
+| content | yes | >5 letters |
+| referrer | no | a referrer url that notification email will use to link back |
+| json | no | if ture, return the result in json format |
+
+
+If error happes and `json=true`, the data returned looks like `{error: 'error infomation'}`; otherwise, it will be the new comment object in JSON format.
+
+
+## Email Notification
+
+If the new comment from a Web client, and `@` someone who will receive a email notification. Besides, the owner of the site will receive one too.
+
+Less than 2 notifications per 2 minutes per email, if exceed, the notification system will not work and keep waiting for 2 minutes.
+
+## Third Party Comments
+
+Maybe you want to install a third party comments like <http://disqus.com>. Because FarBox's API system is open and diversified, we can't make sure whether the solutions below can work:
+
+1. The designer of template may support it, go to your admin dashboard to setup;
+- Or in the admin dashboard, in the `Template Engine`, input your own script code. Refers [scripts_for_doc](http://doc.farbox.com/read/site-configs#toc_19)
+- Modify the template file by yourself, it should usually be `post.html`, add your script code in a right place.
+
+
+
