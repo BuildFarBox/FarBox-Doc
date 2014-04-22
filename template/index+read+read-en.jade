@@ -1,0 +1,49 @@
+doctype html
+if (lang == 'zh_cn' and not request.args.lang) or request.args.lang in ['cn', 'zh_cn']
+	docs_path = 'docs/'
+else
+	docs_path = 'docs-en/'
+if request.path.startswith('/read-en/')
+	docs_path = 'docs-en/'
+post = get_data(url_path=path2, path=docs_path)
+
+head
+	title= post.title or site.title
+	load('/template/stylesheets/basic.css /template/stylesheets/main.scss')
+body
+	{% from 'mixins' import no_cache_sidebar %}
+	+no_cache_sidebar(docs_path, post)
+	#main
+		.content_body
+			if request.args.s
+				h1 Results
+				posts = get_data(type='post', path=docs_path, keywords=request.args.s, sort='position', limit=50)
+				if posts
+					ul.posts_found
+						for post in posts
+							li
+								a(href='/read/{{post.url_path}}')= post.title
+				else
+					p Nothing Found
+			elif request.path == '/'
+				index_doc = get_doc(docs_path)
+				if index_doc and index_doc.content
+					{{ index_doc.content }}
+				else
+					p use <code>index.md</code> for your homepage.
+			else
+				if not post
+					category_path = docs_path+path2
+					post = get_doc(category_path)
+				if post
+					h1.title= post.title
+					post.content.without_toc
+				else
+					raise_404
+	script(type="text/javascript")
+		function search(){
+            if (document.getElementById('search_value').value){ location.href='http://'+location.host+'?s='+document.getElementById('search_value').value}
+            else{ return false;}
+        	}
+		function to_top(){ if(location.hash.indexOf('#toc') !== 0){ window.scroll(0, 0);} }
+		window.onload = function(){ setTimeout(to_top, 200) }
