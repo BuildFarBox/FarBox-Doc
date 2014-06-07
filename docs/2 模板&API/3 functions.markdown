@@ -46,18 +46,100 @@ toc: yes
 
 **在同一篇文档的评论中可以@someone，如果对应的someone（作者昵称）如果有邮箱留下来的话，则对方会收到邮件通知。**
 
+### put
+
+接受3个参数，一个为path, 一个为content，以及from_url(表示从哪个地址下载，默认为None)。
+
+`put('hello.txt', 'this is content')` 表示文件名为`hello.txt`，内容为`this is content`会增加，并重新推送回Dropbox端。
+
+注意事项：
+1. 一个页面内，最多运行2个put函数；
+2. 5分钟内调用不能超过1,000次。
+3. 谨慎使用from_url，如果被系统侦测为恶意使用，当前账户会被直接封禁。
+
+### append
+
+可以将一段文本增加到某个文本文件中，接受以下参数：
+
+- path: 文件路径(必须)
+- content: 需要增加的文字内容 (必须)
+- lines: 默认为1，最大值为10，表示与原来内容的间隔行
+- check: 默认为False，如果为True，表示最后一次append的内容被重复，则直接忽略
+- reverse: 默认为False，表示插入文件尾部；如果为True，则插入头部
+
+## 开发者相关
+
+> 开发者相关的函数，本身的权限比较大，后续只有特定的账户类型才能进行调用。
+
+
+### get_hash
+
+接受任意参数，其中`hashlib`(默认为md5)与`sort`(默认为True)为特殊参数，前者表示散列的方式，支持md5或者sha1，后者表示是否对传入的参数进行排序。
+
+代码示例(微信公众平台的验证):
+
+```jade
+rv = request.values
+if rv.signature != get_hash('<your token>', rv.nonce, rv.timestamp, hashlib='sha1')
+    +raise_404()
+```
+
+### get_outbound_link_password
+
+可以获取外链图片的密码，并且组装URL，做为`outbound_link_password`的GET参数。
+
+get_outbound_link_password接受一个参数`days`，表示外链密码的有效期。默认为3天，days的取值范围为1-60（天）。
+
+
+### get_var/set_var
+可以存储变量到当前网站，以实现一些特殊的定制。需要注意，这些变量并不会同步到Dropbox的存储中。
+
+key与value不能过长（64字节内），变量总数不能超过100.如果value是数值，那么其应该是介于正负4294967296之间的。
+
+通过set_var('test', 1)， 再get_var('test')得到的就是1了。
+
+### send_request
+
+可以发送外部请求到其它网站。
+
+接受以下参数：
+
+- url: 外部请求的URL
+- method: 默认为GET，也可以是POST
+- headers： 默认为`{}`, 可以指定特殊的头部信息
+- 其它k/v： 比如`send_request(<url>, k1=v2, k2=v2)`, 后面可以跟任意k/v类型参数，如果GET则是自动补足倒URL中，如果是POST，则是作为data发送。
+
+send_request会返回一个response对象，`response=send_request('http://google.com/')`， response则有以下字段：
+- text: 返回的数据，文本格式（如有必要，重新编码为utf8或unicode）。
+- status_code: HTTP状态码
+- cookies: resposne被目标URL写入的Cookie
+- headers: 返回的页面头部信息
+- json: 如果是json格式的话，可以直接调用
+- ok: 当前结果（即response））是否正常
+
+
+注意事项:
+
+1. 如果被服务器认为属于外部攻击行为，则会被封禁当前账户。
+2. 不可用来进行proxy，特别是被GFW封禁的源站。
+3. 一个页面内最多不超过3次调用；5分钟内，最多不超过200次调用。
+4. 不要请求大尺寸文件（比如一张图片），页面首先会超时，其次会被认定一次危险行为。
+
+### timestamp_diff
+
+`timestamp_diff(<a unix timestamp>)`， 可以返回当前时间与指定时间戳的相差秒数。
+
+### cronjob
+
+接受一个参数hours，表示cronjob每隔几个小时运行，最小值为1，最大值为30.
+
+如果一个页面中使用了cronjob这个函数，那么这个页面在第一次被访问（或者当前站长访问时）会被激活，之后再访问则会抛出400错误，而转为后台定时运行。
+
+
+
 
 ## 页面渲染相关的函数
 
-### SCSS/SASS/LESS
-
-FarBox支持直接将SASS/SCSS渲染为css文件。
-
-比如`template/styles.scss`，那么访问`http://yoursite.com/template/style.scss?format=raw`的时候，才会保留源格式；其它都是自动编译为CSS进行呈现。
-
-对LESS格式的文件也是同样支持的，但是除了基本的层级关系、变量应用外，对LESS的支持相对有限，比如对应extend的写法并不支持。
-
-另外需要注意的是，编译的过程是忽略所有include/import类似的引用逻辑。
 
 ### load
 
@@ -114,30 +196,9 @@ FarBox支持直接将SASS/SCSS渲染为css文件。
 
 比如JSON的页面`{{ set_content_type('application/json') }}`
 
+### set_no_inject
+表示页面中不嵌入任何可能的代码（比如数学公式脚本、AutoReload脚本）。
 
-### set_per_page
-
-可以设置当前分页时默认的每页条目录。
-但需要注意的是，`默认变量`的优先级，永远高于函数，
-
-```jade
-// jade语法
-+set_per_page(10)
-for post in posts
-	h1= post.title
-// 此时posts是每3条进行分页，无视10这个参数。`posts`这个变量已经先行获取了
-
-//变通的办法, 将默认变量用一个函数包裹
-// mixin是Jade中的语法，相当于Jinja2中的macro，即一个构造函数。
-mixin make_list()
-	for post in posts
-		h1= post.title
-+set_per_page(10)
-+make_list()
-```
-
-### make_site_live
-不接受参数，不返回值。如果处于网站所有者登录的状态下，会将网站设置为live模式，适用于`编写模板代码`的场景。
 
 ### redirect
 接受一个参数`url`，比如`{{ redirect('http://google.com')}}`, 可以强制页面跳转到Google的主页。

@@ -7,9 +7,13 @@ url: farboxers-sites
 
 [《Xander》](http://xander.farbox.com/)
 
+[《I AM FANGKE》](http://www.fangke.im/)
+
 [《Harry》](http://hdwill.info/)
 
 [《NerrSoft》](http://nerrsoft.com/)
+
+[《木昜人》](http://blog.huangyang.me/)
 
 [《陈笔》](http://blog.oyiadin.com/)
 
@@ -22,6 +26,8 @@ url: farboxers-sites
 [《夜の精灵》](http://www.shisi.me/)
 
 [《CSH》](http://csh.farbox.com/)
+
+[《Shanghe Chen》](http://csh.huapanda.net/)
 
 [《HackerZhang's Blog》](http://hackerzhang.com/)
 
@@ -60,6 +66,8 @@ url: farboxers-sites
 [《时之沙砾》](http://aoqiwlzj5.farbox.com/)
 
 [《LABVIEW》](http://labview.farbox.com/)
+
+[代码片段](http://code.sxlf.org/)
 
 
 

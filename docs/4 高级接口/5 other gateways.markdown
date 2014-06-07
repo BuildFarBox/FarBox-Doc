@@ -39,6 +39,12 @@ URL地址：`/service/static_3rd/avatar/<email_md5>`
 
 我们对https://www.gravatar.com/做了一次代理，可以更加快速的获取头像，也避免通常情况下HTTPS中调用HTTP浏览器产生的警告。
 
+## 免费图库
+
+URL地址: `/farbox_free_image.jpg`， 会随机返回一张版权不限定的图片。
+
+**这个URL跟普通的图片调用方式一致**， 比如`/farbox_free_image.jpg?width=120&height=120&fixed=true`返回的是120x120固定尺寸的缩略图。
+
 ## HTTP Response Headers
 
 > FarBox渲染过的页面都会往页面的Headers中填充一些信息以作标识

@@ -19,7 +19,7 @@ url: templates
 - `Ink`, 来自 [赛恩](http://blog.cyanchen.com/)
 - `Yukina`， 来自[imzoke](http://imzoke.farbox.com/)
 - `Writer`, 来自[roryg](http://jollygoodthemes.com/)
-- 'Minimal Box', 来自[Jaden Wang](http://copri.me/)
+- `Minimal Box`, 来自[Jaden Wang](http://copri.me/)
 
 
 ### 使用『黑魔法』的模板
