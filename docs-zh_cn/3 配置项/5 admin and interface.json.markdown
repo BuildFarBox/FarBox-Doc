@@ -5,7 +5,7 @@ toc: yes
 
 ## 后台管理
 
-我们可以通过配置[site.txt](site-configs#item-3-2)来设置网站。
+我们可以通过配置[site.txt](site-configs)来设置网站。
 
 FarBox的默认模板中通过`admin/index.html`这个template文件实现的后台管理（URL为`/admin`）。
 

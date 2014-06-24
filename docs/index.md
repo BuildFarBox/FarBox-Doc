@@ -1,19 +1,22 @@
 ## FarBox
-FarBox是一个很棒的博客平台。
+FarBox is an amazing Blog Platform.
 
-但当你看到doc.farbox.com的时候，则会发现，远不止如此。
+When you see `doc.farbox.com`, you would find it goes  farther than that.
 
-此时的FarBox已经脱离了 [WordPress](https://wordpress.org/)、[Ghost](https://ghost.org/)、[Jekyll](http://jekyllrb.com/) 所属的各自领域。
-
-应该有那么一天，他们会抱着复杂的心情说: 「难以置信」！
+FarBox is different to [WordPress](https://wordpress.org/), [Ghost](https://ghost.org/), [Jekyll](http://jekyllrb.com/). And much better.
 
 
-## 关于本站
-- [PDF文档下载地址](/docs/FarBoxAPI.pdf)，最后更新时间`2014-04-23`
-- doc.farbox.com的[模板源码](https://github.com/BuildFarBox/doc.farbox.com)（大约60行左右的主代码）
-- [FarBox Editor](/service/download-editor)作为本站内容维护以及导出PDF的工具.
-- **English Version** checks [Here](/?lang=en)
+## Need Simple Help?
 
+If you just need some quick help or tips, please visit [help.farbox.com](http://help.farbox.com/).
+
+
+## About This Site
+- [Download PDF Document](/docs/FarBoxAPI.pdf), last modified at `2014-06-22`
+- [template code](https://github.com/BuildFarBox/doc.farbox.com) of doc.farbox.com（about 60 line codes for page rendering）
+- [FarBox Editor](/service/download-editor) is the tool to maintain the contents of this site and export contents into a PDF document.
+- **中文版** 点击[此处](/?lang=zh_cn)
+- btw, if you can help us to improve this document, please give us pull requests on [this repo](https://github.com/BuildFarBox/FarBox-Doc). Sincere appreciation!
 
 
 

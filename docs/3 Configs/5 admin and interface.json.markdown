@@ -5,7 +5,7 @@ toc: yes
 
 ## Admin Dashboard
 
-We can set configs to a site by modifying [site.txt](site-configs#item-3-2).
+We can set configs to a site by modifying [site.txt](site-configs).
 
 The defualt template of FarBox renders the admin dashboard （URL is `/admin`） by the template file `admin/index.html`,
 

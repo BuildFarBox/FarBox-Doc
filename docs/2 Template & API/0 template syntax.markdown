@@ -1,8 +1,121 @@
-url: jade
-Title: Jade Syntax
+url: template-syntax
+Title: Template Syntax
 toc: yes
 
-## Forewords
+> FarBox's basic template engine is base on the [Jinja2][jinja], which is a template frame base on HTML.
+> But you can use both Jinja2(file suffix is .html) and Jade(file suffix is .jade).
+
+
+## Jinja2 Syntax
+
+### Basic Syntax
+
+The Jinja2 syntax is similar to HTML, but you can use `{{}}` `{%%}` to embed some API code.
+
+```
+{{ a variable or run a function }}
+{% logical and other operations %}
+```
+
+### Logical Code
+
+If there is a loop or a judgement, you need start-end tag pairs, like this：
+```
+{% if site.title %} My Name {% endif %}  --> no {% endif %} here will raise an error.
+
+{%for post in posts %}
+    Post Title: {{post.title}}
+{% endfor %} --> no {% endfor %} here will raise an error.
+```
+
+Besides `{% if %}`、`{% endif %}`、`{% for %}`、`{% endfor %}`, there are some others like：`{% block %}`/`{% endblock %}`/`{% extends 'something.html' %}`/`{% include 'something.html' %}`.
+
+## Template Structure
+
+### Template Inheritance(extends)
+
+A parent template file (like base.html), usually means a basic frame.
+```
+Title Here
+{% block head %}{% endblock %} 
+{% block content %}{% endblock %}
+```
+
+A child template file (like detail.html), inherits from the parent template,
+```
+{% extends "base.html" %}  # inherits from which parent template
+{% block content %}  # declare a block
+    detail contents
+{% endblock %}
+    ** this line is not in a block, so it won't be displayed **
+
+{% block abc %}
+    there is no block named `abc` in base.html, so this line won't be displayed either.
+{% endblock %}
+```
+
+Rewrite in Jade syntax:
+```jade
+extends base
+block content
+    detail contents
+** this line is not in a block, so it won't be displayed **      
+block abc
+    there is no block named `abc` in base.html, so this line won't be displayed too.
+```
+
+
+### Include a Template
+
+For example, there is a template file named `t1.html`：
+```
+1234567
+{% include 't2.html' %}
+89
+```
+
+and `t2.html`：
+```
+I am a included text or code.
+```
+
+The last result：
+```
+1234567
+I am a included text or code.
+89
+```
+
+
+### Template File Path
+
+Assume your site folder looks like below:
+```
+|--FarBox
+    |-- template(a directory)
+        |-- base.html
+        |-- index.html
+        |-- post.html
+        |-- includes(a directory)
+            -- comments.html
+        |-- sub_folder(a directory）
+            -- sub_index.html
+```
+
+If `sub_index.html` or `index.html` wants to use base.html, the path must be `base.html`, like `{% extends 'base.html'%}`.
+
+And if you want to include `comment.html`, the path in the code likes this `{% include 'includes/comments.html' %}`
+
+In brief, the template path for `include` `extends`, must be relative to your `template directory`.
+
+And `sub_folder.sub_index` is equal to `sub_folder/sub_index.html` and `sub_folder/sub_index.jade`; `base` is equal to `base.html` and `base.jade`.
+
+#### The Compiled Template Path in FarBox
+
+`sub_folder/a_template.html` and `sub_folder/a_template.jade`, will treated as the same template files. Both of them are the core template file, in fact, they will be compiled to a file named `.sub_folder.a_template`.
+
+
+## Jade Syntax
 
 FarBox turns file-folder base on OS file system into a query-able database, then the FarBox API queries the database to get data to render the pages(HTML).
 
@@ -10,19 +123,24 @@ In a traditional point of view， database means `backend`, and the pages mean `
 
 [Jade](http://jade-lang.com/) is a pythonic template frame from the world of Node.js. In fact, FarBox will compile a `.jade` file into a file follows `Jinja2` syntax on server side.
 
-## Basic Syntax
-
 ### HTML tags、id、class
 
 ```jade
 .class_name this is content
-// last result:<div class="class_name">this is content</div>
+// result:<div class="class_name">this is content</div>
 
 tag_name.class_name
-// last result:<tag_name class="class_name"></tag_name>
+// result:<tag_name class="class_name"></tag_name>
+
+p.class1.class2.class3
+// multi-classes，result: <p class="class1 class2 class3"></p>
+
+a.a_class(href="#", title="this is a link")
+// multi-properties, split by `,` , result: <a class="a_class" href="#" title="this is a link"></a>
+
 
 span#dom_id.class_name_1.class_name_2 this is content
-//last result: <span id="dom_id", class="class_name_1 class_name_2">this is content</span>
+//result: <span id="dom_id", class="class_name_1 class_name_2">this is content</span>
 
 .class_name this is line 1
 | this is line 2
@@ -33,6 +151,7 @@ span#dom_id.class_name_1.class_name_2 this is content
 		this is line 2
 	</div>
 ```
+
 
 ### Variables and HTML Tags
 
@@ -62,6 +181,7 @@ a(href=post.url)= post.title
 a(href='/post/{{post.url_path}}')= post.title
 // this syntax mixed Jinja2 and Jade, equal to <a href='/post/{{post.url_path}}'>{{post.title}}</a>
 ```
+
 
 ### for/if
 
@@ -115,7 +235,8 @@ else no content
 // But other common functions, must need a `+` to declare.
 ```
 
-## Inheritance and include
+
+## Inheritance in Jade
 
 ### extends & include
 
@@ -184,7 +305,6 @@ extends base
 
 ```
 
-
 ### Keywords of Variables
 
 'post', 'posts', 'site', 'sites', 'files', 'tags', 'tag', 'folder', 'folders','category', 'images', 'albums', 'album', 'next_one', 'pre_one', 'paginator', 'pager', thy are the keywords of variables, will not be treated as a HTML tag.
@@ -217,9 +337,16 @@ div
 
 
 
-## Auto-Complete in FarBox
+## Auto-Complete for Jade
 
 - If doctype is not declared, it would be `doctype html` by default.
 - If the doctype is `html`, and no feed address declared, it will be auto-added.
 - If the doctype is `html`, and no charset declared, it will be `utf8` by default.
+
+
+
+[jade]: http://jade-lang.com
+[jinja]: http://jinja.pocoo.org/docs/
+[jinja-cn]: http://docs.torriacg.org/docs/jinja2/templates.html
+
 

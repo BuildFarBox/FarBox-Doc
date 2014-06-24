@@ -37,11 +37,10 @@ Title: 网站URL
 - `/t/*`是系统URL，映射到`/template/`；所有`/template/`目录下的静态资源，使用`/template/<path>`来获取。
 
 
-## SCSS/SASS/LESS/CoffeeScript的原生支持
+## Scss/Sass/Less/CoffeeScript的原生支持
 
-FarBox支持直接将SASS/SCSS渲染为css文件。
 
-比如`template/styles.scss`，那么访问`http://yoursite.com/template/style.scss?format=raw`的时候，才会保留源格式；其它都是自动编译为CSS进行呈现。
+比如`template/styles.scss`，只有访问`http://yoursite.com/template/style.scss?format=raw`的时候，才会保留源格式；其它都是自动编译为CSS进行呈现。
 
 对LESS格式的文件也是同样支持的，但是除了基本的层级关系、变量应用外，对LESS的支持相对有限，比如对应extend的写法并不支持。
 

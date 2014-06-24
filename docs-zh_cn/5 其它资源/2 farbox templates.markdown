@@ -20,6 +20,7 @@ url: templates
 - `Yukina`， 来自[imzoke](http://imzoke.farbox.com/)
 - `Writer`, 来自[roryg](http://jollygoodthemes.com/)
 - `Minimal Box`, 来自[Jaden Wang](http://copri.me/)
+- `Farbtle`, 来自[YCF](http://sync.sh)
 
 
 ### 使用『黑魔法』的模板
