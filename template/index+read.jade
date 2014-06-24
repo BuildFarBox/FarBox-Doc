@@ -1,0 +1,24 @@
+doctype html
+client_lang = request.args.lang or lang
+lang_docs_path = 'docs-%s/'%client_lang
+docs_path = 'docs/' if not has(lang_docs_path) else lang_docs_path
+post = get_data(url_path=path2, path=docs_path)
+
+if request.args._pjax
+	head
+		title= post.title or site.title
+	body
+		include body.jade
+else
+	head
+		title= post.title or site.title
+		load('/template/stylesheets/basic.css /template/stylesheets/main.scss')
+	body
+		{% from 'mixins' import make_sidebar %}
+		+make_sidebar(docs_path)
+		#main
+			include body.jade
+			#footer
+				span powered by&nbsp;
+				a(href='https://www.farbox.com') FarBox.com
+		load('jquery#1.8.2 /template/scripts/history.js /template/scripts/main.coffee')

@@ -8,7 +8,7 @@ $selected_color: $red_color;
 
 
 body {
-    font-family: "Helvetica Neue", Helvetica, Arial, 'Microsoft YaHei', sans-serif;
+    font:  400 16px/1.62 'PT Sans', "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, Hiragino Sans GB, Microsoft YaHei, sans-serif;
     -webkit-text-size-adjust: none;
     word-wrap:break-word;
     font-size: 14px;
@@ -19,6 +19,13 @@ body {
     margin: 0;
 }
 
+h1, h2, h3{
+    font-family: 'PT Serif', "Georgia", "Times New Roman", Times,"Songti SC","SimSun", sans-serif;
+}
+
+.hidden{
+    display: none;
+}
 
 #sidebar {
     position: fixed;
@@ -223,7 +230,7 @@ body {
 
     h2{
         color: #333;
-        font-size: 1.7em;
+        font-size: 1.8em;
         line-height: 1.25em;
         margin: 1.3em 0 0 -0.5em;
         padding: 1.5em 0.5em .5em .5em;
@@ -232,11 +239,15 @@ body {
         font-weight: normal;
 
         border-top: 1px solid $border_color;
+      
+        color: #409ad6;
 
     }
 
     h3{
         font-weight: bolder;
+        margin: 2.5em auto 1em auto;
+        
     }
 
     h4{
@@ -264,7 +275,34 @@ body {
     h2, h3, h4, h5{
         text-rendering: optimizeLegibility;
     }
+  
+    blockquote {
+          color: #777;
+          display: block;
+          text-align: justify;
+          border-left: 4px solid #16B0FF;
+          margin: 1em 0 1em 1em;
+          padding-left: 0.5em;
+      }
 
 }
 
+.doc_post{
+    padding-bottom: 50px;
+    margin-bottom: 30px;
+    border-bottom: 1px solid #eee;
+}
 
+#footer{
+    text-align: center;
+    font-size: 12px;
+    margin-top: 20px;
+    color: #999;
+    a{
+        color: #666;
+        text-decoration: none;
+        &:hover{
+            text-decoration: underline;
+        }
+    }
+}
