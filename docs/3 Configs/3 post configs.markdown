@@ -64,10 +64,10 @@ The value will be stored in `{{doc.url_path}}`.
 
 ### slot1
 
-A extral field for fulltext search, this is a field to search.
+An extra field for fulltext search, this is a field to search.
 
 ### slot2
 
-A extral field for fulltext search, this is a field for sorting.
+An extra field for fulltext search, this is a field for sorting.
 
 

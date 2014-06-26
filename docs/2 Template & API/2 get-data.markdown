@@ -30,7 +30,7 @@ The sort type below:
 - `desc`, DESC order by `date` (default value)
 - `asc`, ASC order by `date`
 - `position`, ASC order by the `position` field that owner customed
-- `score`, the recent hotest documents sorted by the dig score
+- `score`, the recent hottest documents sorted by the dig score
 - `_score`, same to `score`, but the dig score is customed by the owner
 - `-m_date`, DESC order by `m_date`, a new comment on a document will update the m_date
 
@@ -90,7 +90,7 @@ And the parameter of `sort`, _score、score、-m_date are not supported. There a
 
 Working together with `keywords`, default value is `['title', 'raw_content']`, means to search keywords in title and content of a post.
 
-A extral field is `slot1`, which is customed by author in the metadata of a post.
+An extra field is `slot1`, which is customed by author in the metadata of a post.
 
 ### Notices
 
