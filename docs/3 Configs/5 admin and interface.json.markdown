@@ -55,7 +55,7 @@ If only one item in pages, and a property of this item is `extends: true`, then 
 
 ### About 'Options'
 - title: a display value
-- vlaue: the real value
+- value: the real value
 **Usually, options is a list, but if the value of a `options` is `root` (a strings), it will show the folder structure of current site.**
 
 ### Multi-languages Supports
