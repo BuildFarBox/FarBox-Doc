@@ -7,7 +7,7 @@ The login URL is `/login`, will redirect to Dropbox to get granted.
 The logout URL is `/logout`, will clear the login information and jump to the homepage.
 
 
-`/login` accepte the parameters in GET method:
+`/login` accepts the parameters in GET method:
 
 - utc_offset: if not set, will redirect once to get it from browser; if set to `ignore`, just ignore; if other values (float type), after login, utc_offset of your account will be updated.
 - redirect: should be URL that to be redirected after login.

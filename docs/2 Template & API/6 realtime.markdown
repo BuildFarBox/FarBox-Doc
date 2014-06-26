@@ -16,16 +16,16 @@ Some notices about FarBox Realtime API:
 ## File Changed Notification API
 
 > When a file in your site folder was changed, the Websocket of visitors' browser would receive a notification.
-> FarBox just pushed the event that inclued some information about a file, if more details needed,  you should use other Template API to get them.
+> FarBox just pushed the event that includes some information about a file, if more details needed,  you should use other Template API to get them.
 
-API URL: `ws://realtime.farbox.com/notes`l If current site is under `HTTPS`, using `wws:` instead of `ws:`.
+API URL: `ws://realtime.farbox.com/notes`; If current site is under `HTTPS`, using `wws:` instead of `ws:`.
 
 Notices:
 - One file change is related to only one notification.
 - Must use the API in your current site, otherwise, no data transferred through the Websocket.
 
 ### Code snippet
-The sinippet is in `CoffeeScipt`, and `message.data` is the strings in JSON format.
+The snippet is in `CoffeeScipt`, and `message.data` is the strings in JSON format.
 ```coffeescript
 if WebSocket? and JSON?
     if document.location.protocol == 'https:' then ws_protocl='wss:' else ws_protocl='ws:'
@@ -35,7 +35,7 @@ if WebSocket? and JSON?
         note = JSON.parse(message.data)
 ```
 
-### Fields of Noticafication
+### Fields of Notification
 
 | Field | Description |
 | --- | --- |

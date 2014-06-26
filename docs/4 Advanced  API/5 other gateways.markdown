@@ -10,7 +10,7 @@ URL： `<yourdomain.com>/service/status`
 
 - Cloud Service: Third party cloud service. Except Dropbox, other clouds are not supported yet
 - Token Status: if not `Normal`, please re-grant
-- Last Synced at: last time of connecting to the cloud servcie
+- Last Synced at: last time of connecting to the cloud service
 - Synced Times: times of connecting to the cloud service
 - Last Changed at: last time a file is changed
 - TimeZone: the timezone of current account
@@ -40,7 +40,7 @@ This is a proxy for `http://www.gravatar.com/`.
 
 ## HTTP Response Headers
 
-> The response from FarBox has some speical headers.
+> The response from FarBox has some special headers.
 
 | Name | Description  |
 | ----- | ---- | 

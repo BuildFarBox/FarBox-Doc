@@ -21,7 +21,7 @@ Has some data/file or not, accept one parameter.
 
 The `doc` here refers post/image/file.
 
-This function returns nothing, but makes the doc object get some extral abilities, such as statistics and comment.
+This function returns nothing, but makes the doc object get some extra abilities, such as statistics and comment.
 
 ```
 {% set post=get_doc(type='post', path='this-is-article.txt') %}
@@ -29,7 +29,7 @@ This function returns nothing, but makes the doc object get some extral abilitie
 ```
 Specially to a post (status=`public`), add `action=xxx` to the URL to return some other kinds of data.
 
-1. `URL?action=show_raw`， return the orignal content.
+1. `URL?action=show_raw`， return the original content.
 - `URL?action=show_json`, return the post object in JSON format.
 - `URL?action=edit`, redirect to the Web Editor
 
@@ -46,7 +46,7 @@ Notices：
 
 ### append
 
-Append some content into a specified file, accpets these parameters:
+Append some content into a specified file, accepts these parameters:
 
 - path: file path (required)
 - content: the content to append (required)
@@ -56,7 +56,7 @@ Append some content into a specified file, accpets these parameters:
 
 ## For Developers
 
-> The functions for developers maybe open for some speical type accounts in future.
+> The functions for developers maybe open for some special type accounts in future.
 
 
 ### get_hash
@@ -73,7 +73,7 @@ if rv.signature != get_hash('<your token>', rv.nonce, rv.timestamp, hashlib='sha
 
 ### get_outbound_link_password
 
-Get the outbund link password for images, and need to join it into current URL, as the parameter (in GET method) of `outbound_link_password`.
+Get the outbound link password for images, and need to join it into current URL, as the parameter (in GET method) of `outbound_link_password`.
 
 This function accepts one parameter `days`, means the expiry date of the outbound link password. Default value is 3 days, and the range is 1-60(days).
 
@@ -128,7 +128,7 @@ If a page includes this function, the scheduled task will be activated when the 
 
 ### load
 
-This is a function for a lazy coder, it can help us to load multi-css-js files, splited by a blank space.
+This is a function for a lazy coder, it can help us to load multi-css-js files, split by a blank space.
 
 For example, `load("/hello.css /word.js")` will be compiled to the HTML code blow:
 
@@ -152,7 +152,7 @@ For example, `load("jquery")` will load a version 2.0.3 Jquery script.
 
 
 #### How to call
-> load is a lazy function, if the result is not correct, please try the orignal HTML code instead.
+> load is a lazy function, if the result is not correct, please try the original HTML code instead.
 
 - load(`<path or shortcut>`)
 - load(`<path or shortcut>`, version)
@@ -173,7 +173,7 @@ Assume visiting `/requested/path/sub_path` now, then：
 1, get_request_path(offset=1) --> `path/sub_path`
 2, get_request_path(offset=2) --> `sub_path`
 
-There is a speical character `~`, it will always be the start point for computing offset.
+There is a special character `~`, it will always be the start point for computing offset.
 Assume visiting `/requested/path/~sub_path/sub_sub_path` now, then:
 1， get_request_path(offset=1) --> `sub_path/sub_sub_path`
 2, get_request_path(offset=2) --> `sub_sub_path`

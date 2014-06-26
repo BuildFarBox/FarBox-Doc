@@ -20,7 +20,7 @@ If you changed a file's  name or path, you should also change the name or path o
 
 ### Format of Comments File
 
-In the comments file, each comment is splited by `- - - - - - - - - - - - - - - -  `.
+In the comments file, each comment is split by `- - - - - - - - - - - - - - - -  `.
 
 ```
 date: 2013-04-19 07:57:58
@@ -48,7 +48,7 @@ This is comment content 2.
 
 FarBox try to let a human being understand a database which one is designed for human. The comments system is base on this principle too.
 
-Of couse, there are limits because of this principle. By plaintext, we can't handle the nested structure; and if too many comments in one document, every new comment will bring slowdowns in performance.
+Of course, there are limits because of this principle. By plaintext, we can't handle the nested structure; and if too many comments in one document, every new comment will bring slowdowns in performance.
 
 Scenarios that typically used:
 
@@ -77,10 +77,10 @@ If you customed your own URL rules, you should run `{{ add_doc_actions(doc) }}` 
 | site | no | website url|
 | content | yes | >5 letters |
 | referrer | no | a referrer url that notification email will use to link back |
-| json | no | if ture, return the result in json format |
+| json | no | if true, return the result in json format |
 
 
-If error happes and `json=true`, the data returned looks like `{error: 'error infomation'}`; otherwise, it will be the new comment object in JSON format.
+If error happens and `json=true`, the data returned looks like `{error: 'error infomation'}`; otherwise, it will be the new comment object in JSON format.
 
 
 ## Email Notification

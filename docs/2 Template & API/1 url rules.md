@@ -16,7 +16,7 @@ If a URL ends with `.txt` `.mk`  `.md` `.makrdown`, the Template Engine will try
 - step2, try to match the full URL, for example `/path/sub_path.html` will match `/path/sub_path`.
 - step3, try to match the first path of URL, `first_path.html` will match `/first_path/sub_path`, if there is no template file `/first_path/sub_path.html`.
 - step4, try to use `I-Love-FarBox.html` to match all the URLs.(*be careful to use this rule*)
-- step5, finnaly, will use `404.html` as `Not Found` page.
+- step5, finally, will use `404.html` as `Not Found` page.
 
 **Tip: `first path of URL` means the characters before first `~` or slash**
 ```
@@ -32,7 +32,7 @@ For example `template/index+tags+archive.html` can match `HomePage(/)`、`/tags`
 
 
 ## Notices
-1. The template file path should not include `.`, `#` and non-Enginlish characters.
+1. The template file path should not include `.`, `#` and non-English characters.
 - `/t/*` is a system URL，equal to `/template/*`; and all the resources under the folder of `/template/` should use this path: `/template/<path>`.
 
 

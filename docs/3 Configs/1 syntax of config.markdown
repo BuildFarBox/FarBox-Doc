@@ -36,7 +36,7 @@ Then the configs is:
 - - - - - -
 
 
-Option 2： Using YAML, start and end with a seperated line `---`.
+Option 2： Using YAML, start and end with a separated line `---`.
 ```
 ---
 key: value

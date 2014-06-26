@@ -23,7 +23,7 @@ Default value is `/` (means under the root of site folder), if `path='docs/'`, a
 #### level
 Works together with `path`, means the depth of a path. If level=1, means only the direct subfolders; if level=2, will include the subfolders of subfolders; `[2, 3]` is acceptable too, it includes level=2 and level=3, but exclude other deeper path, and exclude level=1 too.
 
-And `>n` or `<n` is acceptabe, `>1` means level=2, level=3, level=4 .etc .
+And `>n` or `<n` is acceptable, `>1` means level=2, level=3, level=4 etc.
 
 #### sort
 The sort type below:
@@ -38,7 +38,7 @@ The sort type below:
 How many records to fetch, if limit=1 and with_page=False, then the result returned will be a document object, not a list.
 
 #### page
-Records needed on which page number, default value is `1`, or get the value from URL `/URL/PATH/page/<page_number>` automaticly.
+Records needed on which page number, default value is `1`, or get the value from URL `/URL/PATH/page/<page_number>` automatically.
 
 #### with_page
 Use paginator or not, default value is `True`, then the `limit` will be equal to  `objects count per page`.
@@ -59,7 +59,7 @@ A document must include more than `min_posts_count` posts, works for `post` and 
 A document must include more than `min_images_count` image, works for `image` and `folder`, the images_count of all `image` is 1.
 
 #### return_count
-Default value is `False`, if set to `True`, the result returned will be an interger that means the documents count matched in total.
+Default value is `False`, if set to `True`, the result returned will be an integer that means the documents count matched in total.
 
 ### Parameters Only for `post`
 #### status
@@ -165,7 +165,7 @@ else:
 | cover |cover for post, the first image in the main body |
 | raw_content | raw content of file, plaintext format, excludes metadata strings|
 | _content | raw content of file, includes metadata strings |
-| metadata | metadata of post, the extral properties |
+| metadata | metadata of post, the extra properties |
 | tags | tags of post, a List|
 | url_path | url path |
 | url | '/post/’+url_path |
@@ -203,7 +203,7 @@ Notes:
 | exposure | exposure time |
 | iso | ISO value |
 | program | 0-8 |
-| latitud |  south latitude is a negative value |
+| latitude |  south latitude is a negative value |
 | longitude | west longitude is a negative value |
 | altitude | -- |
 | height | original image height |
@@ -217,7 +217,7 @@ Notes:
 | content | body text, HTML format |
 | raw_content | raw content of file, plaintext format, excludes metadata strings  |
 | _content | raw content of file, plaintext format, includes metadata strings |
-| metadata | the extral properties |
+| metadata | the extra properties |
 | posts_count| how many posts in it (includes in sub folders) |
 | images_count| how many images in it (includes in sub folders) |
 | _posts_count| how many posts in it (excludes in sub folders) |
@@ -560,7 +560,7 @@ Use `{{post.date}}` directly, return a strings like `2012-12-22 10:11` by defaul
 
 ### format
 
-Combine strings in `TimeFormate` to get a formated date strings.
+Combine strings in `TimeFormat` to get a formated date strings.
 
 code snippet:
 ```
@@ -676,7 +676,7 @@ If width=550, and FarBox will turn it into a valiable value `640`.
 | height| image height | [40, 80, 160, 214, 320, 428, 640, 960, 1280] |
 
 
-The max size of an image is `1280*1280`, if the orignal size of image is larger than this, you need to use `image.url.large` or `{{ image.url }}?large=true`,  and the max size of an orignal image is `1560*2560`.
+The max size of an image is `1280*1280`, if the original size of image is larger than this, you need to use `image.url.large` or `{{ image.url }}?large=true`,  and the max size of an original image is `1560*2560`.
 
 
 ## List
@@ -753,7 +753,7 @@ Then `objects.filter('value', 2)` will return `[{value:2}]`.
 
 ### pick
 
-Pick some special values of a speical attribute.
+Pick some special values of a special attribute.
 
 ```json
 objects = [
@@ -767,7 +767,7 @@ Then `objects.pick('path')` will return `['1', '2']`.
 
 ### add
 
-`add(obj, position=-1)`, add an item into the list, default `postion=-1` means insert at the foot.
+`add(obj, position=-1)`, add an item into the list, default `position=-1` means insert at the foot.
 
 And this function will try to avoid items conflict. For example:
 
@@ -782,7 +782,7 @@ posts.add(new_post, 0)
 
 ## json
 
-If the type of a object is `list` or `dict`, the `json` property will be available. It turns object into json format. If turning fails, the orignal object returned.
+If the type of a object is `list` or `dict`, the `json` property will be available. It turns object into json format. If turning fails, the original object returned.
 
 Code snippet:
 

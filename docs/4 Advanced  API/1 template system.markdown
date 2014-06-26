@@ -1,8 +1,8 @@
- title: Template System
+title: Template System
 url: farbox-template-system
 toc: yes
 
-## Template Pakcage
+## Template Package
 
 A template_key is the unique identifier for a template package.
 
@@ -13,7 +13,7 @@ More details refers [Template Package Configs](template-configs).
 ### Clone Template
 The template of every site on FarBox can be cloned (except forbided by the designer).
 
-Clone a template dose not mean you can get the orignal template files, of course, many designers' templates are free to download, you can get them from other places like GitHub.
+Clone a template dose not mean you can get the original template files, of course, many designers' templates are free to download, you can get them from other places like GitHub.
 
 Usually, if you want to clone `http://www.domain.com`, just visit  `http://www.domain.com/template`.
 
@@ -24,17 +24,17 @@ Usually, if you want to clone `http://www.domain.com`, just visit  `http://www.d
 
 After cloned, the information set to your site is a `template_key`.
 
-When the designer of the orignal site update the package,  all the users of this package will get the newest template resources automatically.
+When the designer of the original site update the package,  all the users of this package will get the newest template resources automatically.
 
 #### Just Clone (clone mode)
 
-Different to `package mode`, if you cloned from A site, even A site changeed its template files, nothing will happen to you site.
+Different to `package mode`, if you cloned from A site, even A site changed its template files, nothing will happen to you site.
 
 ## Template API
 
 ### Template Preview
 
-Assume a temlate has a template_key=`xxxxxxxxxxxxx`, and your site domain is `www.domain.com`; then visiting the url `http://www.domain.com/?template_key=xxxxxxxxxxx` to preview the template on your site.
+Assume a template has a template_key=`xxxxxxxxxxxxx`, and your site domain is `www.domain.com`; then visiting the url `http://www.domain.com/?template_key=xxxxxxxxxxx` to preview the template on your site.
 
 **Notice: the visitor who can preview a template must be the owner of a site.**
 

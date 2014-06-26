@@ -44,7 +44,7 @@ Besides in metadata, you can declare `position` by the filename. For example, `1
 
 Default value is `public`.
 
-It can be any charaters less than 20 letters.
+It can be any characters less than 20 letters.
 
 ### toc
 
@@ -57,7 +57,7 @@ Accept: yes/no
 
 ### url
 
-A field to custome the url path for a post.
+A field to custom the url path for a post.
 
 The value will be stored in `{{doc.url_path}}`.
 

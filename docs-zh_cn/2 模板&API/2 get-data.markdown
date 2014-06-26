@@ -568,7 +568,7 @@ abc/de/fad' --> de/fad
 
 ### format
 
-指定TimeFormate，进而格式化日期的`函数`。
+指定TimeFormat，进而格式化日期的`函数`。
 
 代码示例:
 ```

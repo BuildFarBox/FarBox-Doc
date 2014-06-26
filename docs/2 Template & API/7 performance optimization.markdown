@@ -39,6 +39,6 @@ FarBox will guess and estimate other pages' rendering time, if rendering lasts a
 
 ## Optimizations in Template and Pages
 
-- Do not load too many resources (like css/js) in one page, otherwise it can lead to blocking a visitor's IP by server if the visitor reresh several times in a short time.
+- Do not load too many resources (like css/js) in one page, otherwise it can lead to blocking a visitor's IP by server if the visitor refresh several times in a short time.
 - In your css file, try to reduce using images.
 - Try to use SASS/SCSS/LESS instead of traditional CSS.

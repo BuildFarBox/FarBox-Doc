@@ -119,7 +119,7 @@ And `sub_folder.sub_index` is equal to `sub_folder/sub_index.html` and `sub_fold
 
 FarBox turns file-folder base on OS file system into a query-able database, then the FarBox API queries the database to get data to render the pages(HTML).
 
-In a traditional point of view， database means `backend`, and the pages mean `frontend`. And we found the Jade syntax which can help us to mix backend and frontend together, coding less but more beautiful. We customed Jade syntax for FarBox, it works well and becomes more human!
+In a traditional point of view， database means `backend`, and the pages mean `frontend`. And we found the Jade syntax which can help us to mix backend and frontend together, coding less but more beautiful. We customized Jade syntax for FarBox, it works well and becomes more human!
 
 [Jade](http://jade-lang.com/) is a pythonic template frame from the world of Node.js. In fact, FarBox will compile a `.jade` file into a file follows `Jinja2` syntax on server side.
 
@@ -173,7 +173,7 @@ node= 'post.content'
 ```
 
 
-If there are extral properties forthe HTML tag:
+If there are extra properties for the HTML tag:
 ```jade
 a(href=post.url)= post.title
 // euqal to <a href={{post.url}}>{{post.title}}</a>
@@ -231,7 +231,7 @@ else no content
 ```jade
 +raise_404()
 // add `+` before the function name, equal to: {{ raise_404() }}
-// This is just an example，in fact raise_404 is a speical function, event has no `+`, it works well.
+// This is just an example，in fact raise_404 is a special function, event has no `+`, it works well.
 // But other common functions, must need a `+` to declare.
 ```
 
@@ -258,7 +258,7 @@ include include.comments.jade
 
 `macro` is a concept in Jinja2, `mixin` is a concept in Jade,  and in FarBox API they are equal.
 
-`macro` means to define a cuntion, then it can be called in your template. If you need to cache the reuslt computed by the function, the name of function should start with `cache_`.
+`macro` means to define a function, then it can be called in your template. If you need to cache the result computed by the function, the name of function should start with `cache_`.
 
 Jinja2 is a template frame wrote in Python, so the definition of `macro` is close to the way in Python.
 
@@ -333,7 +333,7 @@ div
 
 'load', 'set_content_type', 'redirect', 'a_with_selected', 'set_per_page', 'add_doc_actions', these functions are core functions of FarBox, you can use them directly.
 
-'need_login', 'need_admin', 'raise_404' are speical functions, for example, `need_login()` and `need_login`, euqal to `{{ need_login() }}`.
+'need_login', 'need_admin', 'raise_404' are special functions, for example, `need_login()` and `need_login`, equal to `{{ need_login() }}`.
 
 
 

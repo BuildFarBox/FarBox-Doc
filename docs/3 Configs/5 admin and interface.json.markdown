@@ -7,15 +7,15 @@ toc: yes
 
 We can set configs to a site by modifying [site.txt](site-configs).
 
-The defualt template of FarBox renders the admin dashboard （URL is `/admin`） by the template file `admin/index.html`,
+The default template of FarBox renders the admin dashboard （URL is `/admin`） by the template file `admin/index.html`,
 
 The implementation logic:
 
-1. Get the data about curent site configs and other information by template file `admin/data.html`.
+1. Get the data about current site configs and other information by template file `admin/data.html`.
 2. Build the dashboard interface by the rules defined in `interface.json`.
 3. When click the `save` button, the config properties will be turned into the plaintext content of `site.txt`, and sync to FarBox and Dropbox.
 
-> [Source Code refers here](https://github.com/BuildFarBox/FarBox-Admin/tree/master/admin)，index.html handles HTML page, and data.html handels the JSON data to be loaded, and some css/js files in  `dash` directory.
+> [Source Code refers here](https://github.com/BuildFarBox/FarBox-Admin/tree/master/admin)，index.html handles HTML page, and data.html handles the JSON data to be loaded, and some css/js files in  `dash` directory.
 
 ## interface.json
 
@@ -29,7 +29,7 @@ The implementation logic:
 
 `pages` will build some clickable tabs.
 
-If only one item in pages, and a property of this item is `extends: true`, then other pages will inherite from the default interface.json.
+If only one item in pages, and a property of this item is `extends: true`, then other pages will inherit from the default interface.json.
 
 
 #### level-2: page
@@ -48,7 +48,7 @@ If only one item in pages, and a property of this item is `extends: true`, then 
 - title: name of the config
 - key： the key of a config, such as `title`, which can be called by {{ site.configs.title }}
 - model: one of them: text/select/check/textarea/image
-- default_value: the default value. if model is text or textarea, the value will be displayed in `placeholder`; if the model is select or check, the matched option will be selected or checked.
+- default_value: the default value. If model is text or textarea, the value will be displayed in `placeholder`; if the model is select or check, the matched option will be selected or checked.
 - is_list： available for textarea model, means when re-format in YAML, this will be a list.
 - options: available for mode select
 - value: available for model image, it's a filename, like `/_image/avatar.jpg`, the user can drag an image and store it in this specified path.
@@ -71,7 +71,7 @@ For example:
 Notice，`title_zh_cn` must be in lower-case.
 
 ## Notices
-If your template need a speical field, like `site.configs.sub_title`, then config it through `interface.json` would be great!
+If your template need a special field, like `site.configs.sub_title`, then config it through `interface.json` would be great!
 
 If the rules make you feel confused, maybe just modify the default `interface.json` would be a easier way to custom a special admin dashboard.
 
