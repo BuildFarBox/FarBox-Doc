@@ -173,7 +173,7 @@ else:
 | metadata | metadata of post, the extra properties |
 | tags | tags of post, a List|
 | url_path | url path |
-| url | '/post/’+url_path |
+| url | '/post/’+url_path or `/`+url_path, it depends |
 | comments_count | comments count |
 | posts_count | always equal to 1 |
 

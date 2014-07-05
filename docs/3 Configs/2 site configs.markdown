@@ -108,6 +108,8 @@ The dig system is running for every site, if you want the digged recods, you sho
 
 ## Template Engine
 
+### post_url_format
+`normal` or `no_prefix`. If `normal`, when calling `post.url` will get `/post/<url_path>`; if `no_prefix`, get `/<url_path>` instead.
 
 ### scripts_per_page
 

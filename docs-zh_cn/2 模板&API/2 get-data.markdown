@@ -175,7 +175,7 @@ else:
 | metadata | post的扩展属性 |
 | tags | 标签， 列表类型|
 | url_path | 自定义的url |
-| url | '/post/’ + url_path|
+| url | '/post/’+url_path 或 `/`+url_path，视情况而定|
 | comments_count | 评论数 |
 | posts_count | 恒等于1 |
 

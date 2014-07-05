@@ -114,6 +114,9 @@ site description
 
 ##模板引擎
 
+### post_url_format
+`normal`或`no_prefix`。 如果是`normal`, 那么调用`post.url`的时候，格式为`/post/<url_path>`; 如果是`no_prefix`，则为`/<url_path>`。
+
 
 ### scripts_per_page
 
