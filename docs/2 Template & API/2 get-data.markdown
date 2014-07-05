@@ -55,8 +55,13 @@ The date of documents must be older than the declared date (exclude `equal`).
 #### min_posts_count
 A document must include more than `min_posts_count` posts, works for `post` and `folder`, the posts_count of all `post` is 1.
 
+If the name of a folder starts with `_`, the min_posts_count does not work.
+
+
 #### min_images_count
 A document must include more than `min_images_count` image, works for `image` and `folder`, the images_count of all `image` is 1.
+
+If the name of a folder starts with `_`, the min_images_count does not work.
 
 #### return_count
 Default value is `False`, if set to `True`, the result returned will be an integer that means the documents count matched in total.
@@ -348,6 +353,8 @@ Code snippet to get comments for a post:
 {{ tag_name }}, {{ tag_count }} </br>
 {% endfor %}
 ```
+
+3, site.tags means the posts whose status is `public`, and if a tag contains `:`, it will not be in site.tags.
 
 ### site.title
 

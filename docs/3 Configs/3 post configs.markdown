@@ -46,6 +46,9 @@ Default value is `public`.
 
 It can be any characters less than 20 letters.
 
+Besides, the rule base on root direcotry has a higher priority, for example, in `site_foder/_draft`, the `_draft` is a root direcotry and starts with `_`, then the system will mark the status of posts under this directory as `draft`. And so on, if under `_system`, the status is `system`.
+
+
 ### toc
 
 If there are multi-headers（H1、H2、H3 .etc) in a post, the `toc` config can control show the table of contents or not in the main body of the post.

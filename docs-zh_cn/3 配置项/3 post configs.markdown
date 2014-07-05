@@ -45,6 +45,8 @@ description here
 
 它的value可以是任意值，但不能超过20个字符长。
 
+另外，status设置，基于`根目录规则`的优先级最高，比如`site_foder/_draft`，其中`_draft`这是一个根目录，同时又以`_`开始，则认为这个目录下的所有日志的status都为`draft`，同理类推，如果是`_system`目录，则是`system`这个status。
+
 
 ### toc
 
